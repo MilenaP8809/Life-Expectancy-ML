@@ -357,12 +357,15 @@ try:
     prediction_b = predict_life(scenario_b)
 
 except Exception as e:
-    st.error(f"Modellprediktionen misslyckades: {e}")
-    st.info(
-        "Kontrollera att den sparade modellen "
-        "använder samma fyra variabler."
+    st.error(
+        f"Kunde inte läsa modellen eller data: "
+        f"{type(e).__name__}: {e}"
     )
+    st.exception(e)
     st.stop()
+
+
+  
 
 
 difference = prediction_b - prediction_a
