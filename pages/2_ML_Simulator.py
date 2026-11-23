@@ -156,13 +156,19 @@ if not DATA_PATH.exists():
     )
     st.stop()
 
+
 try:
     model = load_model()
     df = load_data()
 
 except Exception as e:
-    st.error(f"Kunde inte läsa modellen eller data: {e}")
+    st.error(
+        f"Kunde inte läsa modellen eller data: "
+        f"{type(e).__name__}: {e}"
+    )
+    st.exception(e)
     st.stop()
+
 
 
 # ======================================
